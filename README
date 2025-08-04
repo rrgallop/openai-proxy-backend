@@ -1,7 +1,3 @@
 # ChatGPT API Proxy Server
 
 This is a simple server that takes a prompt and sends it to the [ChatGPT API](https://platform.openai.com/docs/api-reference/chat) and returns the response.
-
-## Usage
-
-Send a `POST` request to `http://localhost:3000/api/chat` with the following JSON body:
