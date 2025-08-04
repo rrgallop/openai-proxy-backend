@@ -12,7 +12,12 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { prompt } = req.body;
+    const { messages } = req.body;
+
+    if (!Array.isArray(messages) || messages.length === 0) {
+        return res.status(400).json({ error: 'Missing or invalid messages' });
+    }
+
     if (!prompt || typeof prompt !== 'string') {
         return res.status(400).json({ error: 'Missing or invalid prompt' });
     }
@@ -31,8 +36,8 @@ export default async function handler(req, res) {
             },
             body: JSON.stringify({
                 model: 'gpt-3.5-turbo',
-                messages: [{ role: 'user', content: prompt }],
-                max_tokens: 200
+                messages,
+                max_tokens: 500
             }),
         });
 
